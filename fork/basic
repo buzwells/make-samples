@@ -1,0 +1,11 @@
+# compile a single file with a main method
+# include a clean target
+
+# a "phony" target that has no recipe but depends on other targets
+all: clean fork-example 
+
+fork-example: clean fork-example.c
+	gcc fork-example.c -o fork-example
+
+clean:
+	rm -f fork-example 

@@ -1,0 +1,10 @@
+# a simple make rule
+#
+# target: prerequisites; recipe 
+#
+# note: conventionally, the action appears on a separate line after the initial rule declaration.
+#
+# target: prerequisites 
+#	recipe	
+
+all: ; @echo hello, world!
