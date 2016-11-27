@@ -1,0 +1,1 @@
+cmd_/home/joel/os-course/hw/klm/hello.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/joel/os-course/hw/klm/hello.ko /home/joel/os-course/hw/klm/hello.o /home/joel/os-course/hw/klm/hello.mod.o

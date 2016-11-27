@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <wait.h>
 
 void work(char * name) {
     printf("%s process\n", name);
@@ -23,7 +24,7 @@ int main() {
 		return 0;
 	    default: // parent
 		work("parent");
-		sleep(10);
+                wait(NULL);		
 		printf("bye parent\n");
         }
     }
