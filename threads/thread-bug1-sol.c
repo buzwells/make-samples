@@ -13,18 +13,18 @@ long tasks[NUM_THREADS];
 void *worker_thread(void *arg) {
   printf("This is worker_thread #%ld\n", (long)arg);
   for(int a = 0; a < 5; a++) {
+    int ret = pthread_mutex_lock(&common_mutex);
+    if(ret == EINVAL) {
+      printf("Encountered an error trying to lock mutex\n");
+    }
     if( sum < 15 ) {
+      sleep(1); // represents work done
       printf("incrementing sum\n");
-      sleep(1);
-      int ret = pthread_mutex_lock(&common_mutex);
-      if(ret == EINVAL) {
-        printf("Encountered an error trying to lock mutex\n");
-      }
       sum++;
-      pthread_mutex_unlock(&common_mutex);
     } else {
       printf("Cap is reached in work thread #%ld\n", (long) arg);
     }
+    pthread_mutex_unlock(&common_mutex);
   }
   pthread_exit(NULL);
 }
