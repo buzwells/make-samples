@@ -1,6 +1,9 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#define NUM_THREADS 5
+
+long tasks[NUM_THREADS];
 
 // function to work in a thread
 void *worker_thread(void *arg) {
@@ -17,7 +20,8 @@ int main() {
   // create threads       
   long id;
   for (id = 1; id <= 5; id++) {
-    int ret = pthread_create(&my_thread[id], NULL, &worker_thread, (void*)id);
+    tasks[id] = id;
+    int ret = pthread_create(&my_thread[id], NULL, &worker_thread, (void*) tasks[id]);
   }
 
   for (id = 1; id <= 5; id++) {

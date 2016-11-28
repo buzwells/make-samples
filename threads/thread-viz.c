@@ -4,8 +4,10 @@
 
 #define MAX_PRINT 2000
 #define NUM_THREADS 5
+
 // array of characters for each thread
 char display[5] = "abcde";
+long tasks[NUM_THREADS];
 
 // function to work in a thread
 void *print_xs(void *arg) {
@@ -25,7 +27,8 @@ int main() {
   // create threads       
   long id;
   for (id = 0; id < NUM_THREADS; id++) {
-    int ret = pthread_create(&my_thread[id], NULL, &print_xs, (void*)id);
+    tasks[id] = id;
+    int ret = pthread_create(&my_thread[id], NULL, &print_xs, (void*) tasks[id]);
   }
 
   while(1) {
